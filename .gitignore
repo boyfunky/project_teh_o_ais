@@ -14,3 +14,19 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+# ignore project
+.project
+
+#ignore OS generated files
+config/database.yml
+.Trashes
+
+#temporary files 
+debug
+
+#Contents generated on deployment 
+public/assets/*
+
+#Development testing
+public/test.html
