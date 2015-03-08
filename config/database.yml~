@@ -12,10 +12,10 @@
 default: &default
   adapter: mysql2
   encoding: utf8
+  pool: 5
   username: root
-  password: boyfunky
-  host: 127.0.0.1
-  port: 3306
+  password:
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
