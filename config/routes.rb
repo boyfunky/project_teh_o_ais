@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  
+  
+  root :to => "cleaning_home#index"
+  get "packages" => "packages#result_packages"
+  
+  # resources :cleaning_home, :only =>[:submit_event], path: 'cleaning-home' do
+    # collection do
+      # post "submit_event"
+    # end
+  # end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

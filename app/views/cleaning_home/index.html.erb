@@ -1,0 +1,21 @@
+<div id="calendar">
+				
+</div>
+<%= form_tag(submit_event_cleaning_home_index_path, :method => :post) do %>
+<input type="text" name="titleevent" />
+<div class='input-group date' id='datetimepicker1'>
+	<input type='text' class="form-control" name="dateeventstart" />
+		<span class="input-group-addon">
+			<span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>
+<div class='input-group date' id='datetimepicker2'>
+	<input type='text' class="form-control" name="dateeventend" />
+		<span class="input-group-addon">
+			<span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>
+<input type="text" name="employee" />
+<input type="text" name="zone" />
+<button role="next">Save</button>
+<% end %>

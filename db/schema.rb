@@ -11,6 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150217175453) do
+
+  create_table "locations", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "packages", force: true do |t|
+    t.integer "company_id"
+    t.time    "start_time"
+    t.time    "end_time"
+    t.integer "location_id"
+    t.integer "service_id"
+    t.string  "day_id"
+    t.string  "no_employee"
+    t.boolean "is_booked",   default: false
+  end
+
+  create_table "schedules", force: true do |t|
+    t.integer  "account_id"
+    t.date     "service_date"
+    t.integer  "company_id"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "employees"
+    t.integer  "location_id"
+    t.string   "status"
+    t.string   "feedback"
+    t.decimal  "transaction_amount", precision: 10, scale: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
