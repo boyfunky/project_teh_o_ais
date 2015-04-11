@@ -11,36 +11,89 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217175453) do
+ActiveRecord::Schema.define(version: 20150405135926) do
 
   create_table "locations", force: true do |t|
-    t.string "name"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "package_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "packages", force: true do |t|
-    t.integer "company_id"
-    t.time    "start_time"
-    t.time    "end_time"
-    t.integer "location_id"
-    t.integer "service_id"
-    t.string  "day_id"
-    t.string  "no_employee"
-    t.boolean "is_booked",   default: false
+    t.integer  "company_id"
+    t.integer  "time_slot_id"
+    t.integer  "location_id"
+    t.integer  "service_id"
+    t.integer  "day_id"
+    t.integer  "resource_quantity"
+    t.integer  "package_category_id"
+    t.boolean  "is_booked",           default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "schedules", force: true do |t|
-    t.integer  "account_id"
+    t.integer  "user_id"
     t.date     "service_date"
     t.integer  "company_id"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.integer  "time_slot_id"
     t.integer  "employees"
     t.integer  "location_id"
     t.string   "status"
     t.string   "feedback"
-    t.decimal  "transaction_amount", precision: 10, scale: 0
+    t.decimal  "transaction_amount",  precision: 10, scale: 0
+    t.integer  "package_category_id"
+    t.integer  "package_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "services", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_slots", force: true do |t|
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "provider",                            null: false
+    t.string   "uid",                    default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "email"
+    t.text     "tokens"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
 end

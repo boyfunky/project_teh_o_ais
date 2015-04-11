@@ -1,0 +1,45 @@
+<div class="container">
+	<div ng-controller='CleaningServicesCtrl' ng-init =''>
+		<div class="col-sm-12">
+			<div class="row col-sm-9">
+				<h3>Booking Confirmation</h3>
+				<br/>
+				<h5>Package</h5>
+				<label>{{singlePackageSlot.package_category}}</label>
+				<h5>Scheduling Details </h5>
+				<label>{{singlePackageSlot.start_time}} <b>-</b> {{singlePackageSlot.end_time}}</label>
+				<h5>If One time: One Time Service ELSE First Session On </h5>
+				<label>{{date | date:'yyyy-MM-dd'}}</label>
+				<br/>
+				<h5>Total Price </h5>
+				<label>Get Price</label>	
+			</div>
+			<div class="row col-sm-3">
+				<h3>Customer Details</h3>
+				<label>{{postCustomerDetails.customer_name}}</label>
+				<label>{{postCustomerDetails.customer_phone}}</label>
+				<label>{{postCustomerDetails.customer_email}}</label>
+				<h6>Address:</h6>
+				<label>{{postCustomerDetails.customer_address}}</label>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<h3>Add on the following at a special rate</h3>
+			<div class="col-sm-3">
+				<img ng-src="images/serviceimage1.png" />
+				<a class="btn btn-primary" ng-href="">Add Now!</a>
+			</div>
+			<div class="col-sm-3">
+				<img ng-src="images/serviceimage1.png" />
+				<a class="btn btn-primary" ng-href="">Add Now!</a>
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<div class="col-sm-8">
+				<input type="checkbox">
+				<span>I am aware that I have agreed to a Recurring {input category type} Package for this service</span>
+			</div>
+			<a class="btn btn-primary col-sm-3" ng-href="#/payment_confirmation" ng-click='confirmBookingReservation(singlePackageSlot, postCustomerDetails)'>Make Payment!</a>
+		</div>
+	</div>
+</div>

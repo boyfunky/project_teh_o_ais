@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
+  #devise_for :users
+  scope '/api' do
+    mount_devise_token_auth_for 'User', at: '/auth'
+      #namespace :api, defaults: { format: :json } do
+    resources :groups, except: [:new, :edit]
+  end
   
   
-  root :to => "cleaning_home#index"
+  root to: "home#index"
   get "packages" => "packages#result_packages"
+  post "packages" => "packages#result_packages"
+  get "schedules" => "schedules#save_schedules"
+  post "schedules" => "schedules#save_schedules"
+  get "locations" => "location#get_locations"
+
   
   # resources :cleaning_home, :only =>[:submit_event], path: 'cleaning-home' do
     # collection do

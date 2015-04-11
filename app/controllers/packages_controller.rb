@@ -2,14 +2,19 @@ require 'json'
 class PackagesController < ApplicationController
   
   def result_packages
-    
+
+    ap "im here in packages"
+    ap params
     #@result = Package.group(:start_time, :end_time, :day_id).count
-    @result = Package.select("start_time, end_time, day_id, COUNT(*) as count").group(:start_time, :end_time);
+    @result = Package.joins(:time_slot, :package_category, :service)
+      .select("packages.id, packages.resource_quantity, time_slots.start_time as package_start_time, time_slots.end_time as package_end_time, packages.day_id, package_categories.name as package_category_name, services.name as service_name")
+      .where("packages.location_id = ? and packages.service_id = ?", params[:location_id], params[:service_id])
+      .group(:start_time, :end_time);
     ap @result
-    #SELECT start_time, end_time, COUNT(*) FROM lets_schedule_com_my_development.packages GROUP BY start_time, end_time;
-    #Package.group(:start_time, :end_time, :day_id).count
+    
     respond_to do |format|
       format.json { render :json => @result, :callback => params[:callback]  }
     end
   end
+  
 end

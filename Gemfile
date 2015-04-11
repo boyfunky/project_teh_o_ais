@@ -31,6 +31,13 @@ gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'awesome_print'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'protected_attributes'
+gem 'devise_token_auth', git: 'https://github.com/jasonswett/devise_token_auth.git'
+gem 'omniauth'
+gem 'rails-api'
+#gem 'devise'  
+#gem 'angular_rails_csrf' 
 group :development, :test do
  
   

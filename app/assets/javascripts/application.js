@@ -17,4 +17,5 @@
 //= require fullcalendar
 //= require bootstrap
 //= require bootstrap-datetimepicker
+//= require angular-devise
 //= require_tree .
